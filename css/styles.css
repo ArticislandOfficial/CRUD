@@ -26,6 +26,7 @@ body {
 .contenedor {
   width: min(90%, 120rem);
   margin: 0 auto;
+  align-items: center;
 }
 a {
   text-decoration: none;
@@ -78,6 +79,7 @@ img {
   margin: -5rem auto 0 auto;
   width: 95%;
   padding: 5rem;
+  height: 90vh;
 }
 .campo {
   display: flex;
@@ -115,18 +117,16 @@ img {
   .formato {
     font-size: 2rem;
   }
-  /* .pie-de-pagina{
-
-        height: 10vh;
-        display: flex;
-        text-align: center;
-        
-    } */
+.formulario {
+  height: calc(98% - 2rem)
+}
 
 }
 .pie-de-pagina {
   display: flex;
   justify-content: center;
+  height: 10vh;
+  /* margin-top: 20rem; */
 }
 
 .boton:hover {
