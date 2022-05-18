@@ -4,53 +4,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="./css/styles.css" />
     <title>Document</title>
   </head>
   <body>
     <header class="encabezado">
       <h1>Agrega una tarea</h1>
-      <p>Vamos agrega una tarea!</p>
+      <h3>CRUD</h3>
     </header>
-  
+
     <main class="contenedor">
-        <h3 class="centrar-texto">Tarea</h3>
+      <h3 class="centrar-texto">Tarea</h3>
 
-        <div class="contacto-bg"></div>
+      <form class="formulario">
+        <div class="campo">
+          <label class="campo__label" for="nombre">Nombre</label>
+          <input
+            class="campo__field"
+            type="text"
+            placeholder="Tu Nombre"
+            id="nombre"
+          />
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="email">E-mail</label>
+          <input
+            class="campo__field"
+            type="email"
+            placeholder="Tu E-mail"
+            id="email"
+          />
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="mensaje">Mensaje</label>
+          <textarea
+            placeholder="Describe un poco la tarea"
+            class="campo__field campo__field--textarea"
+            id="mensaje"
+          ></textarea>
+        </div>
 
-        <form class="formulario">
-            <div class="campo">
-                <label class="campo__label" for="nombre">Nombre</label>
-                <input 
-                    class="campo__field"
-                    type="text" 
-                    placeholder="Tu Nombre" 
-                    id="nombre"
-                >
-            </div>
-            <div class="campo">
-                <label class="campo__label" for="email">E-mail</label>
-                <input 
-                    class="campo__field"
-                    type="email" 
-                    placeholder="Tu E-mail" 
-                    id="email"
-                >
-            </div>
-            <div class="campo">
-                <label class="campo__label" for="mensaje">Mensaje</label>
-                <textarea 
-                    placeholder="Describe un poco la tarea"
-                    class="campo__field campo__field--textarea"
-                    id="mensaje"
-                ></textarea>
-            </div>
-
-            <div class="campo">
-                <input type="submit" value="Agregar" class="boton boton--primario">
-            </div>
-        </form>
-
-        
+        <div class="campo">
+          <input type="submit" value="Agregar" class="boton boton--primario" />
+        </div>
+      </form>
     </main>
     <footer></footer>
   </body>
