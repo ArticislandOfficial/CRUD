@@ -87,3 +87,23 @@ const editPost = (e) => {
   input.value = e.parentElement.previousElementSibling.innerHTML;
   e.parentElement.parentElement.remove();
 };
+arrayActividades = JSON.parse(localStorage.getItem("rutina"));
+if (arrayActividades === null) {
+  arrayActividades = [];
+} else {
+  arrayActividades.forEach((element) => {
+    listaActividadesUi.innerHTML += `
+         <div class="alert alert-danger" role="alert">
+          <i class="material-icons float-left mr-3"> 
+            accessibility </i>
+          <b>${element.actividad}</b> - ${element.estado}
+          <span class="float-right">
+            <i class="material-icons"> done </i>
+            <i class="material-icons"> delete </i>
+          </span>
+        </div>
+      </div>
+    </div>
+         `;
+  });
+}
