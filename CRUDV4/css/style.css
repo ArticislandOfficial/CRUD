@@ -58,5 +58,6 @@ body {
 }
 .derechos{
   display: flex;
+  padding: 1rem;
   
 }
