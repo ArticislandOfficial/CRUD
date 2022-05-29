@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <!-- Generamos un menú vertical con Bulma -->
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <aside class="menu">
+            <p class="menu-label">
+              CRUD
+            </p>
+            <ul class="menu-list">
+              <li><a href="./">Inicio</a></li>
+            </ul>
+            <p class="menu-label">
+              Formulario
+            </p>
+            <!-- Insertamos un formulario para mandar datos a nuestro CRUD-->
+            <form class="formcontainer " id="form">
+              <div class="field">
+                <label for="name" class="label">Nombre</label>
+                <input type="text" class="input" id="name" required>
+              </div>
+              <div class="field">
+                <label for="lastname" class="label">Apellido</label>
+                <input type="text" class="input" id="lastname" required>
+              </div>
+              <div class="field">
+                <label for="email" class="label">Correo electrónico</label>
+                <input type="email" class="input" id="email">
+              </div>
+              <div class="field">
+                <label for="phone" class="label">Teléfono</label>
+                <input type="number" class="input" id="phone">
+              </div>
+              <div class="field">
+                <label for="direccion" class="label">Dirección</label>
+                <input type="text" class="input" id="direccion" required>
+              </div>
+              <input type="hidden" name="hdnid" id="hdnid">
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link" onclick="crearContacto()">Enviar</button>
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light">Cancelar</button>
+                </div>
+              </div>
+
+            </form>
+          </aside>
+
+        </div>
+        <div class="column">
+          <h1 class="title">
+            Lista de usuarios
+          </h1>
+          <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <strong>CRUD</strong> by Kevin Luciano. Este ejercicio se realiza con fines educativos.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+
+  actualizarTabla();
+    //Creamos una función para mandar los datos del formulario a nuestro localStorage
+    function crearContacto() {
+      const name = document.getElementById("name").value;
+      const lastname = document.getElementById("lastname").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const direccion = document.getElementById("direccion").value;
+      const id = document.getElementById("hdnid").value;
+
+      //validamos los campos del formulario y los mandamos a nuestro localStorage de nombre misContactos
+      if (name != "" && lastname != "" && direccion != "") {
+        let misContactos = JSON.parse(localStorage.getItem("misContactos"));
+        if (misContactos == null) {
+          misContactos = [];
+        }
+        //Si el id es diferente de vacio, significa que estamos editando un contacto
+        if (id != "") {
+          //Recorremos el array de contactos para encontrar el contacto que vamos a editar
+          for (let i = 0; i < misContactos.length; i++) {
+            if (misContactos[i].id == id) {
+              misContactos[i].name = name;
+              misContactos[i].lastname = lastname;
+              misContactos[i].email = email;
+              misContactos[i].phone = phone;
+              misContactos[i].direccion = direccion;
+            }
+          }
+        } else {
+          //Si el id es vacio, significa que estamos creando un nuevo contacto
+          let id = misContactos.length + 1;
+          misContactos.push({
+            id: id,
+            name: name,
+            lastname: lastname,
+            email: email,
+            phone: phone,
+            direccion: direccion
+          });
+        }
+        localStorage.setItem("misContactos", JSON.stringify(misContactos));
+        //Actualizamos la tabla
+        actualizarTabla();
+      } else {
+        alert("Debe llenar todos los campos");
+      }
+    }
+
+    //Creamos una función para actualizar la tabla
+    function actualizarTabla() {
+      let misContactos = JSON.parse(localStorage.getItem("misContactos"));
+      let tabla = document.getElementsByTagName("table")[0];
+      tabla.innerHTML = "";
+      for (let i = 0; i < misContactos.length; i++) {
+        let tr = document.createElement("tr");
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        let td4 = document.createElement("td");
+        let td5 = document.createElement("td");
+        let td6 = document.createElement("td");
+        let td7 = document.createElement("td");
+        let btnEditar = document.createElement("button");
+        let btnEliminar = document.createElement("button");
+        let btnEditarText = document.createTextNode("Editar");
+        let btnEliminarText = document.createTextNode("Eliminar");
+        let id = document.createTextNode(misContactos[i].id);
+        let name = document.createTextNode(misContactos[i].name);
+        let lastname = document.createTextNode(misContactos[i].lastname);
+        let email = document.createTextNode(misContactos[i].email);
+        let phone = document.createTextNode(misContactos[i].phone);
+        let direccion = document.createTextNode(misContactos[i].direccion);
+        btnEditar.appendChild(btnEditarText);
+        btnEliminar.appendChild(btnEliminarText);
+        td1.appendChild(id);
+        td2.appendChild(name);
+        td3.appendChild(lastname);
+        td4.appendChild(email);
+        td5.appendChild(phone);
+        td6.appendChild(direccion);
+        td7.appendChild(btnEditar);
+        td7.appendChild(btnEliminar);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        tr.appendChild(td7);
+        tabla.appendChild(tr);
+      }
+    }
+    //Función que nos encripta el ID
+    function uuidv4() {
+      return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(
+        /[018]/g,
+        c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+      );
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>
