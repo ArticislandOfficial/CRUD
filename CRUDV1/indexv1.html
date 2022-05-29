@@ -37,22 +37,46 @@
           />
         </div>
         <div class="campo">
-          <label class="campo__label" for="mensaje">Mensaje</label>
+          <label class="campo__label" for="mensaje">Tarea</label>
           <textarea
             placeholder="Describe un poco la tarea"
             class="campo__field campo__field--textarea"
             id="mensaje"
           ></textarea>
         </div>
-
+        <div id="msg"></div>
         <div class="campo">
-          <input onclick="agregaTarea()"  value="Agregar" class="boton boton--primario" />
+          <input
+            onclick="agregaTarea()"
+            value="Agregar"
+            class="boton boton--primario"
+          />
         </div>
       </form>
-      
+      <div id="posts">
+        <!-- <div>
+                    ejemplo de maquetacion 
+                    <p>Tarea 1</p>
+                    <span class="options">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </span>
+                </div>
+            
+          
+                <div>
+                    <p>Tarea 1</p>
+                    <span class="options">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </span>
+                </div>
+            </div> -->
+      </div>
+      <!-- fin derecha -->
     </main>
-    <footer class="pie-de-pagina ">
-      <p class="centrar-texto">todos los derechos reservados </p> 
+    <footer class="pie-de-pagina">
+      <p class="centrar-texto">todos los derechos reservados</p>
     </footer>
     <script src="./js/app.js"></script>
   </body>

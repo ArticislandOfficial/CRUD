@@ -135,3 +135,11 @@ img {
 .boton--primario {
   background-color: var(--negro);
 }
+.options {
+  display: flex;
+  gap: 25px;
+}
+
+#msg {
+  color: red;
+}
