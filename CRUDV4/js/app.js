@@ -5,31 +5,30 @@ let textarea = document.getElementById("textarea");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
 let add = document.getElementById("add");
-
+//evitar que el boton recarge la pagina 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   formValidation();
 });
-
+//validacion del formulario 
 let formValidation = () => {
   if (textInput.value === "") {
     console.log("failure");
-    msg.innerHTML = "Task cannot be blank";
+    msg.innerHTML = "La tarea no puede estar en blanco ";
   } else {
     console.log("success");
     msg.innerHTML = "";
-  }
-   acceptData();
-   add.setAttribute("data-bs-dismiss", "modal");
+    acceptData();
+    add.setAttribute("data-bs-dismiss", "modal");
     add.click();
 
     (() => {
       add.setAttribute("data-bs-dismiss", "");
     })();
-  
+  }
 };
 
-let data = [];
+let data = [{}];
 
 let acceptData = () => {
   data.push({
@@ -37,15 +36,11 @@ let acceptData = () => {
     date: dateInput.value,
     description: textarea.value,
   });
-
   localStorage.setItem("data", JSON.stringify(data));
-
   console.log(data);
-
-
   createTasks();
 };
-/////
+//Se crea funcion de hacer tarea 
 let createTasks = () => {
   tasks.innerHTML = "";
   data.map((x, y) => {
@@ -72,11 +67,8 @@ let resetForm = () => {
 };
 let deleteTask = (e) => {
   e.parentElement.parentElement.remove();
-
   data.splice(e.parentElement.parentElement.id, 1);
-
   localStorage.setItem("data", JSON.stringify(data));
-
   console.log(data);
 };
 let editTask = (e) => {
@@ -88,6 +80,7 @@ let editTask = (e) => {
 
   deleteTask(e);
 };
+//IIFE NEW CONCEPT 
 (() => {
   data = JSON.parse(localStorage.getItem("data")) || [];
   console.log(data);
