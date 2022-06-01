@@ -2,7 +2,7 @@ body {
   font-family: sans-serif;
   margin: 0 50px;
   background-color: #e5e5e5;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +30,7 @@ body {
   padding: 3px;
   border-radius: 3px;
 }
-#msg {
+#msg , #msgDate, #msgText {
   color: red;
 }
 #tasks {

@@ -5,19 +5,23 @@ let textarea = document.getElementById("textarea");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
 let add = document.getElementById("add");
-//evitar que el boton recarge la pagina 
+//evitar que el boton recarge la pagina o haga cosas raras XD
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   formValidation();
 });
 //validacion del formulario 
 let formValidation = () => {
-  if (textInput.value === "") {
+  if (textInput.value === ""|| dateInput.value === "" || textarea.value === "") {
     console.log("failure");
     msg.innerHTML = "La tarea no puede estar en blanco ";
+    msgDate.innerHTML = "Se debe agregar fecha"
+    msgText.innerHTML = "Se debe de agregar descripciòn  ";
   } else {
     console.log("success");
     msg.innerHTML = "";
+    msgDate.innerHTML="";
+    msgText.innerHTML = "";
     acceptData();
     add.setAttribute("data-bs-dismiss", "modal");
     add.click();
